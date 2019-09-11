@@ -23,7 +23,7 @@
     timeoutForMediumTests="10"
     timeoutForLargeTests="60"
     verbose="true"
-    bootstrap="tests/bootstrap.php">
+    bootstrap="vendor/autoload.php">
     <php>
     </php>
     <testsuites>
