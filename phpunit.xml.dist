@@ -25,6 +25,7 @@
     verbose="true"
     bootstrap="vendor/autoload.php">
     <php>
+        <const name="PBR_PATH" value="/var"/>
     </php>
     <testsuites>
         <testsuite name="Pbraiders Test Suite">
