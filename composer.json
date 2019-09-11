@@ -41,7 +41,7 @@
     "config": {
         "sort-packages": true,
         "optimize-autoloader": true,
-        "vendor-dir": "vendor/"
+        "vendor-dir": "./vendor"
     },
     "scripts": {
         "check": [
