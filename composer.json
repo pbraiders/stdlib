@@ -14,6 +14,7 @@
     ],
     "require": {
         "php": "^7.3",
+        "friendsofphp/php-cs-fixer": "^2.15",
         "league/uri-parser": "^1.4"
     },
     "autoload": {
@@ -44,13 +45,10 @@
         "vendor-dir": "vendor"
     },
     "scripts": {
-        "check": [
-            "@cs-check",
-            "@test"
-        ],
-        "cs-check": "vendor/bin/phpcs --standard=./phpcs.xml",
-        "cs-fix": "vendor/bin/phpcbf --standard=./phpcs.xml",
+        "check": "vendor/bin/phpcs --standard=./phpcs.xml",
+        "fix": "vendor/bin/phpcbf --standard=./phpcs.xml",
+        "fixer": "vendor/bin/php-cs-fixer fix --verbose src",
         "test": "vendor/bin/phpunit --colors=always",
-        "md-check": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'"
+        "mess": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'"
     }
 }

@@ -1,6 +1,7 @@
 .vscode/
 /vendor/
 /doc/
+.php_cs.cache
 *.log
 local.*
 desktop.ini
