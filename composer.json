@@ -1,0 +1,56 @@
+{
+    "name": "pbraiders/stdlib",
+    "description": "Pbraiders stdlib component",
+    "homepage": "https://github.com/pbraiders/stdlib",
+    "readme": "README.md",
+    "time": "2019-09-10",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Olivier Jullien",
+            "homepage": "https://github.com/ojullien",
+            "email": "contact@pbraiders.fr"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "league/uri-parser": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pbraiders\\Stdlib\\": "src/"
+        },
+        "files": [
+            "src/Stdlib.php"
+        ]
+    },
+    "require-dev": {
+        "phpmd/phpmd": "@stable",
+        "phpunit/phpunit": "^8",
+        "squizlabs/php_codesniffer": "*",
+        "vimeo/psalm": "^3.4"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PbraidersTest\\Stdlib\\": "tests/"
+        },
+        "files": [
+            "src/Stdlib.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "vendor-dir": "vendor/"
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "vendor/bin/phpcs --standard=./phpcs.xml",
+        "cs-fix": "vendor/bin/phpcbf --standard=./phpcs.xml",
+        "test": "vendor/bin/phpunit --colors=always",
+        "md-check": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'"
+    }
+}
