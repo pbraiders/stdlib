@@ -1,6 +1,6 @@
 # Pbraiders-stdlib
 
-[![Build Status](https://img.shields.io/travis/pbraiders/stdlib/master.svg?style=flat-square)](https://travis-ci.com/pbraiders/stdlib.svg?branch=master)
+[![Build Status](https://travis-ci.com/pbraiders/stdlib.svg?branch=master)](https://travis-ci.com/pbraiders/stdlib)
 
 Pbraiders\Stdlib is a set of components that implements general purpose utility class and functions for different scopes.
 
