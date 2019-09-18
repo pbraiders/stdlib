@@ -3,8 +3,6 @@ sudo: false
 language: php
 
 php:
-  - '7.1'
-  - '7.2'
   - '7.3'
 
 git:
@@ -18,7 +16,6 @@ matrix:
   fast_finish: true
 
 before_install:
-  - phpenv config-rm xdebug.ini
   - travis_retry composer self-update
   - mkdir -p build/logs
 
