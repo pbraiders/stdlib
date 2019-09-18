@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.1",
         "league/uri-parser": "^1.4"
     },
     "autoload": {
@@ -26,8 +26,10 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
+        "php-coveralls/php-coveralls": "^2.1",
         "phpmd/phpmd": "@stable",
-        "phpstan/phpstan": "^0.11.15",
+        "phpstan/phpstan": "^0.11",
+        "phpstan/phpstan-strict-rules": "^0.11",
         "phpunit/phpunit": "^8",
         "squizlabs/php_codesniffer": "*",
         "vimeo/psalm": "^3.4"
@@ -46,11 +48,20 @@
         "vendor-dir": "vendor"
     },
     "scripts": {
+        "analyse": [
+            "@analysebyphpstan",
+            "@analysebymd"
+        ],
+        "analysebyphpstan": "vendor/bin/phpstan analyse src --level=max -c ./phpstan.neon --no-progress",
+        "analysebymd": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'",
         "check": "vendor/bin/phpcs --standard=./phpcs.xml",
-        "fix": "vendor/bin/phpcbf --standard=./phpcs.xml",
-        "fixer": "vendor/bin/php-cs-fixer fix --verbose src",
-        "mess": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'",
-        "analyse": "vendor/bin/phpstan analyse src --level=max -c ./phpstan.neon --no-progress",
-        "test": "vendor/bin/phpunit --colors=always"
+        "fix": [
+            "@fixbysquizlabs",
+            "@fixbyfriendsofphp"
+        ],
+        "fixbysquizlabs": "vendor/bin/phpcbf --standard=./phpcs.xml",
+        "fixbyfriendsofphp": "vendor/bin/php-cs-fixer fix --verbose --diff src",
+        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always",
+        "testcover": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always --coverage-html build/logs/codecoverage"
     }
 }

@@ -22,8 +22,8 @@ namespace Pbraiders\Stdlib;
  */
 function configurePHP(array $options): bool
 {
-    return array_walk($options, function (string $newvalue, string $option): void {
-        @ini_set($option, (string) $newvalue);
+    return array_walk($options, function ($newvalue, $option): void {
+        @ini_set((string) $option, (string) $newvalue);
     });
 }
 
@@ -141,14 +141,14 @@ function extractDepthKeyInArray(array $array1, array $filter)
     // Looking for the array has the same key.
     foreach ($filter as $key => $value) {
         // Case: the key is missing. Stop.
-        if (! array_key_exists($key, $array1)) {
+        if (!array_key_exists($key, $array1)) {
             $return = null;
             break;
         }
 
         // Case: the key exists in $array1.
         // if $filter[$key] is not an array, that means we want to return $array1[$key]
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             $return = $array1[$key];
             break;
         }
@@ -156,7 +156,7 @@ function extractDepthKeyInArray(array $array1, array $filter)
         // Case: the key exists in $array1.
         // Case: $filter[$key] is an array. That means we looking for the key deeper.
         // If $array1[$key] is not an array. Stop.
-        if (! is_array($array1[$key])) {
+        if (!is_array($array1[$key])) {
             $return = null;
             break;
         }
