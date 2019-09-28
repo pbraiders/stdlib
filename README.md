@@ -5,7 +5,8 @@
 
 Pbraiders\Stdlib is a set of components that implements general purpose utility class and functions for different scopes.
 
-*Note: I use this package for my own projects, it contains only the features I need.*
+- String and Array usefull functions.
+- Reflection trait to access protected/private methods/properties. Used in test classes.
 
 ## Table of Contents
 
@@ -13,7 +14,7 @@ Pbraiders\Stdlib is a set of components that implements general purpose utility 
 
 ## Requirements
 
-- PHP: >=7.3
+- PHP: >=7.2
 
 ## Installation
 
@@ -27,9 +28,7 @@ Alternatively, [download a release](https://github.com/pbraiders/stdlib/releases
 
 ## Documentation
 
-I wrote and I use this package for my own projects. And, unfortunately, I do not provide exhaustive documentation. Please read the code and the comments ;)
-
-You can generate documentation using phpdocumentor. It should be installed with [Composer](https://getcomposer.org/).
+We use this package for our own projects. And, unfortunately, we do not provide exhaustive documentation. Please read the code and the comments ;)
 
 ## Test
 
