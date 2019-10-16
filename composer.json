@@ -30,17 +30,8 @@
         ]
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "overtrue/phplint": "^1.1",
         "php-coveralls/php-coveralls": "^2.1",
-        "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.1",
-        "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.1",
-        "phpmd/phpmd": "@stable",
-        "phpstan/phpstan": "^0.11",
-        "phpstan/phpstan-strict-rules": "^0.11",
-        "phpunit/phpunit": "^8.4",
-        "squizlabs/php_codesniffer": "^3.5",
-        "vimeo/psalm": "^3.6"
+        "phpunit/phpunit": "^8.4"
     },
     "autoload-dev": {
         "psr-4": {
@@ -56,23 +47,6 @@
         "vendor-dir": "vendor"
     },
     "scripts": {
-        "analyse": [
-            "@analysebyphpstan",
-            "@analysebymd",
-            "@analysebypsalm"
-        ],
-        "analysebyphpstan": "vendor/bin/phpstan analyse src --level=max -c ./phpstan.neon --no-progress",
-        "analysebymd": "vendor/bin/phpmd src text ./phpmd.xml --exclude '*/vendor/*,*/old/*'",
-        "analysebypsalm": "vendor/bin/psalm --config=./psalm.xml",
-        "check": "vendor/bin/phpcs --standard=./phpcs.xml",
-        "fix": [
-            "@fixbysquizlabs",
-            "@fixbyfriendsofphp"
-        ],
-        "fixbysquizlabs": "vendor/bin/phpcbf --standard=./phpcs.xml",
-        "fixbyfriendsofphp": "vendor/bin/php-cs-fixer fix --verbose --diff src",
-        "lint": "vendor/bin/phplint src --exclude=vendor --no-interaction --no-cache",
-        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml",
-        "testcover": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always --coverage-html build/tests/codecoverage"
+        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml"
     }
 }
