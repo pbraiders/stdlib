@@ -3,7 +3,7 @@
     "description": "Pbraiders stdlib component",
     "homepage": "https://github.com/pbraiders/stdlib",
     "readme": "README.md",
-    "time": "2019-09-10",
+    "time": "2019-10-16",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -12,6 +12,12 @@
             "email": "contact@pbraiders.fr"
         }
     ],
+    "support": {
+        "email": "contact@pbraiders.fr",
+        "docs": "https://github.com/pbraiders/stdlib/docs",
+        "issues": "https://github.com/pbraiders/stdlib/issues",
+        "source": "https://github.com/pbraiders/stdlib"
+    },
     "require": {
         "php": "^7.2"
     },
@@ -25,13 +31,16 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
+        "overtrue/phplint": "^1.1",
         "php-coveralls/php-coveralls": "^2.1",
+        "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.1",
+        "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.1",
         "phpmd/phpmd": "@stable",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-strict-rules": "^0.11",
-        "phpunit/phpunit": "^8",
-        "squizlabs/php_codesniffer": "*",
-        "vimeo/psalm": "^3.4"
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5",
+        "vimeo/psalm": "^3.6"
     },
     "autoload-dev": {
         "psr-4": {
@@ -62,7 +71,8 @@
         ],
         "fixbysquizlabs": "vendor/bin/phpcbf --standard=./phpcs.xml",
         "fixbyfriendsofphp": "vendor/bin/php-cs-fixer fix --verbose --diff src",
-        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always --coverage-clover build/logs/clover.xml",
-        "testcover": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always --coverage-html build/logs/codecoverage"
+        "lint": "vendor/bin/phplint src --exclude=vendor --no-interaction --no-cache",
+        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml",
+        "testcover": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --colors=always --coverage-html build/tests/codecoverage"
     }
 }

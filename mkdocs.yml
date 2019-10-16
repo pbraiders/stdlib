@@ -1,0 +1,57 @@
+# Project information
+site_name: 'pbraiders\stdlib'
+site_description: 'Stdlib component for PBRaiders'
+site_author: 'Olivier Jullien'
+site_url: 'https://github.com/pbraiders/stdlib'
+
+# Repository
+repo_name: 'pbraiders/stdlib'
+repo_url: 'https://github.com/pbraiders/stdlib'
+
+# Copyright
+copyright: 'PBRaiders\Stdlib is open-source and is licensed under the GNU General Public License v3.0 License.'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+    primary: 'green'
+    accent: 'amber'
+  font: false
+
+# Customization
+docs_dir: docs
+site_dir: build/docs/html
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+# Navigation
+nav:
+    - Stdlib: index.md
