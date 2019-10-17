@@ -2,7 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://github.com/pbraiders/stdlib/</loc>
-     <lastmod>2019-10-16</lastmod>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/array_key_search/</loc>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/array_intersect_key_recursive/</loc>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/ini_set_all/</loc>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/is_string_empty/</loc>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/ksort_recursive/</loc>
+     <lastmod>2019-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/pbraiders/stdlib/reflectiontrait/</loc>
+     <lastmod>2019-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
