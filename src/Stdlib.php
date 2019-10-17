@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Pbraiders\Stdlib;
 
+use RuntimeException;
+
 /**
  * Sets the values of PHP configuration options.
  *
@@ -18,12 +20,12 @@ namespace Pbraiders\Stdlib;
  *
  * @see https://www.php.net/manual/en/function.array-walk.php
  * @param array $options
- * @return boolean
+ * @return bool
  */
-function configurePHP(array $options): bool
+function ini_set_all(array $options): bool
 {
-    return array_walk($options, function ($newvalue, $option): void {
-        @ini_set((string) $option, (string) $newvalue);
+    return \array_walk($options, function ($newvalue, $option): void {
+        @\ini_set((string) $option, (string) $newvalue);
     });
 }
 
@@ -31,15 +33,19 @@ function configurePHP(array $options): bool
  * Sort an array by key, recursively.
  *
  * @see https://www.php.net/manual/en/function.ksort.php
- * @param mixed $array
- * @return void
+ * @param mixed $array The input array.
+ * @param mixed $unused the current index.
+ * @param int $sort_flags Sorting behavior.
+ * @return bool Returns TRUE on success or FALSE on failure.
  */
-function sortArrayByKey(&$array): void
+function ksort_recursive(&$array, $unused = null, int $sort_flags = SORT_STRING): bool
 {
-    if (is_array($array)) {
-        ksort($array, SORT_STRING);
-        array_walk($array, '\Pbraiders\Stdlib\sortArrayByKey');
+    $bReturn = true;
+    if (\is_array($array)) {
+        $bReturn = \ksort($array, $sort_flags);
+        \array_walk($array, '\Pbraiders\Stdlib\ksort_recursive', $sort_flags);
     }
+    return $bReturn;
 }
 
 /**
@@ -48,7 +54,7 @@ function sortArrayByKey(&$array): void
  * @param string $value
  * @return boolean
  */
-function isEmptyString(string $value): bool
+function is_string_empty(string $value): bool
 {
     $bReturn = false;
     $sValue = trim($value);
@@ -61,111 +67,96 @@ function isEmptyString(string $value): bool
 /**
  * Returns an array containing all the entries of array1 which have keys that are present in $filter, recursively.
  *
+ * @see https://www.php.net/manual/en/function.array_intersect_key.php
  * @param array $array1 The array with master keys to check.
- * @param array $filter The array to compare keys against.
+ * @param array $array2 The array to compare keys against.
  * @return array Returns an associative array containing all the entries of array1 which have keys that are present in
- * $filter.
+ * $array2.
  */
-function intersectArrayByKey(array $array1, array $filter): array
+function array_intersect_key_recursive(array $array1, array $array2): array
 {
-    $array1 = array_intersect_key($array1, $filter);
+    $array1 = \array_intersect_key($array1, $array2);
     foreach ($array1 as $key => $value) {
-        if (is_array($value) && is_array($filter[$key])) {
-            $array1[$key] = intersectArrayByKey($value, $filter[$key]);
+        if (\is_array($value) && \is_array($array2[$key])) {
+            $array1[$key] = array_intersect_key_recursive($value, $array2[$key]);
         }
     }
     return $array1;
 }
 
 /**
- * Checks if the given key or index exists in the array. At a specific depth.
+ * Searches the multi-dimensionnal array for a given located key and returns the value if successful.
  *
- * $array1 is a multi-dimensionnal array with many keys and values.
- *
- * $filter is the filter and should be with one key by depth level:
- * $filter = [
- *    'level1' => [
- *      'level2'=> [
- *         ... => [
- *           'the_key' => 'the_value',
- *           ],
- *         ],
+ * $array2 is the filter and should be with one key by level:
+ * $array2 = [
+ *   'the_key' => true,
+ * ];
+ * or
+ * $array2 = [
+ *   'level1' => [
+ *     'level2'=> [
+ *       ... => [
+ *         'the_key' => true,
  *       ],
- *    ],
+ *     ],
+ *   ],
+ * ];
  *
- * @param array $array1 The array with the key to check.
- * @param array $filter The array to compare key against. Must contains only one key, at any depth.
- * @return boolean Returns true if the key exists at the same depth.
- */
-function existsDepthKeyInArray(array $array1, array $filter): bool
-{
-    $bReturn = false;
-
-    // Use the intersect method.
-    $aActual = intersectArrayByKey($array1, $filter);
-
-    //If the key exists at the same depth both arrays have the same key count.
-    if (\count($aActual, \COUNT_RECURSIVE) === \count($filter, \COUNT_RECURSIVE)) {
-        $bReturn = true;
-    }
-
-    return $bReturn;
-}
-
-/**
- * Checks if the given key or index exists in the array. At a specific depth.
+ * This function is using pointers and note recursion to avoid the nested call funtion limit overflow.
+ * The comparison is done in a case-sensitive manner.
  *
- * $array1 is a multi-dimensionnal array with many keys and values.
- *
- * $filter is the filter and should be with one key by depth level:
- * $filter = [
- *    'level1' => [
- *      'level2'=> [
- *         ... => [
- *           'the_key' => 'the_value',
- *           ],
- *         ],
- *       ],
- *    ],
- *
- * @param array $array1 The array with the key to check.
- * @param array $filter The array to compare key against. Must contains only one key, at any depth.
+ * @param array $array1 An array with keys to check. May be multi-dimensionnal.
+ * @param array $array2 The array to compare key against. Must contains only one key by level.
  * @return mixed Returns the value
  */
-function extractDepthKeyInArray(array $array1, array $filter)
+function array_key_search(array $array1, array $array2)
 {
-    // Init
+    // Dealing with pointers.
     $return = null;
+    $pArray1 = &$array1;
+    $pArray2 = &$array2;
 
-    // The filter has only one key by level.
-    // Looking for the array has the same key.
-    foreach ($filter as $key => $value) {
-        // Case: the key is missing. Stop.
-        if (! array_key_exists($key, $array1)) {
+    // Searching ...
+    while ($pArray2 !== null) {
+        // Fetch the current array2 key
+        $key = key($pArray2);
+
+        // The array2 is empty
+        if (is_null($key)) {
+            $return = null;
+            break;
+        }
+
+        // Fetch the current array2[$key] value
+        $value = &$pArray2[$key];
+
+        // Case: the key is missing in $array1. Stop.
+        if (! array_key_exists($key, $pArray1)) {
             $return = null;
             break;
         }
 
         // Case: the key exists in $array1.
-        // if $filter[$key] is not an array, that means we want to return $array1[$key]
+        // if $array2[$key] is not an array, that means we want to return $array1[$key]
         if (! is_array($value)) {
-            $return = $array1[$key];
+            $return = $pArray1[$key];
             break;
         }
 
         // Case: the key exists in $array1.
-        // Case: $filter[$key] is an array. That means we looking for the key deeper.
+        // Case: $array2[$key] is an array. That means we looking for the deeper key.
         // If $array1[$key] is not an array. Stop.
-        if (! is_array($array1[$key])) {
+        if (! is_array($pArray1[$key])) {
             $return = null;
             break;
         }
 
         // Case: the key exists in $array1.
-        // Case: $filter[$key] is an array.
+        // Case: $array2[$key] is an array.
         // Case: $array1[$key] is an array.
         // Deep searching...
-        $return = extractDepthKeyInArray($array1[$key], $value);
+        $pArray1 = &$pArray1[$key];
+        $pArray2 = &$pArray2[$key];
     }
 
     return $return;

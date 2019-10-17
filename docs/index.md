@@ -12,13 +12,13 @@ The package requires PHP >=7.2
 !!! note
     You may check if your PHP and extension versions match the platform requirements using
 
-    ``` bash
+    ```shell
     composer diagnose
     ```
 
     and
 
-    ``` bash
+    ```shell
     composer check-platform-reqs
     ```
 
@@ -33,13 +33,13 @@ The package is installable and PSR-4 autoloadable via [Composer](https://getcomp
 
 - For no dev use:
 
-    ``` bash
+    ```shell
     composer install --no-dev
     ```
 
 - For dev use:
 
-    ``` bash
+    ```shell
     composer install
     ```
 

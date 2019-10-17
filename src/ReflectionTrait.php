@@ -15,7 +15,7 @@ use ReflectionMethod;
 use ReflectionProperty;
 
 /**
- * Utility traits for reflection.
+ * Utility trait for reflection.
  */
 trait ReflectionTrait
 {

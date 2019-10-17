@@ -27,8 +27,7 @@ site_dir: build/docs/html
 # Extensions
 markdown_extensions:
   - admonition
-  - codehilite:
-      guess_lang: false
+  - codehilite
   - footnotes
   - meta
   - toc:
@@ -55,3 +54,9 @@ plugins:
 # Navigation
 nav:
     - Stdlib: index.md
+    - array_key_search: array_key_search.md
+    - array_intersect_key_recursive: array_intersect_key_recursive.md
+    - ini_set_all: ini_set_all.md
+    - is_string_empty: is_string_empty.md
+    - ksort_recursive: ksort_recursive.md
+    - ReflectionTrait: reflectiontrait.md
