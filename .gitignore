@@ -6,3 +6,4 @@
 *.log
 local.*
 desktop.ini
+composer.phar
