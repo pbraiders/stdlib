@@ -19,7 +19,7 @@ use RuntimeException;
  *  'php_option_name' => 'new_value_for_the_option'
  *
  * @see https://www.php.net/manual/en/function.array-walk.php
- * @param array $options
+ * @param array<string> $options
  * @return bool
  */
 function ini_set_all(array $options): bool
@@ -68,9 +68,9 @@ function is_string_empty(string $value): bool
  * Returns an array containing all the entries of array1 which have keys that are present in $filter, recursively.
  *
  * @see https://www.php.net/manual/en/function.array_intersect_key.php
- * @param array $array1 The array with master keys to check.
- * @param array $array2 The array to compare keys against.
- * @return array Returns an associative array containing all the entries of array1 which have keys that are present in
+ * @param array<mixed> $array1 The array with master keys to check.
+ * @param array<mixed> $array2 The array to compare keys against.
+ * @return array<mixed> Returns an associative array containing all the entries of array1 which have keys that are present in
  * $array2.
  */
 function array_intersect_key_recursive(array $array1, array $array2): array
@@ -105,8 +105,8 @@ function array_intersect_key_recursive(array $array1, array $array2): array
  * This function is using pointers and note recursion to avoid the nested call funtion limit overflow.
  * The comparison is done in a case-sensitive manner.
  *
- * @param array $array1 An array with keys to check. May be multi-dimensionnal.
- * @param array $array2 The array to compare key against. Must contains only one key by level.
+ * @param array<mixed> $array1 An array with keys to check. May be multi-dimensionnal.
+ * @param array<mixed> $array2 The array to compare key against. Must contains only one key by level.
  * @return mixed Returns the value
  */
 function array_key_search(array $array1, array $array2)
