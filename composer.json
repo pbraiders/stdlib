@@ -1,52 +1,52 @@
 {
-    "name": "pbraiders/stdlib",
-    "description": "Pbraiders stdlib component",
-    "homepage": "https://github.com/pbraiders/stdlib",
-    "readme": "README.md",
-    "time": "2019-10-18",
-    "license": "GPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "Olivier Jullien",
-            "homepage": "https://github.com/ojullien",
-            "email": "contact@pbraiders.fr"
-        }
-    ],
-    "support": {
-        "email": "contact@pbraiders.fr",
-        "docs": "https://github.com/pbraiders/stdlib/docs",
-        "issues": "https://github.com/pbraiders/stdlib/issues",
-        "source": "https://github.com/pbraiders/stdlib"
-    },
-    "require": {
-        "php": "^7.2"
-    },
-    "autoload": {
-        "psr-4": {
-            "Pbraiders\\Stdlib\\": "src/"
-        },
-        "files": [
-            "src/Stdlib.php"
-        ]
-    },
-    "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1",
-        "phpunit/phpunit": "^8.4"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "PbraidersTest\\Stdlib\\": "tests/"
-        },
-        "files": [
-            "src/Stdlib.php"
-        ]
-    },
-    "config": {
-        "sort-packages": true,
-        "optimize-autoloader": true,
-        "vendor-dir": "vendor"
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml"
+  "name": "pbraiders/stdlib",
+  "description": "Pbraiders stdlib component",
+  "homepage": "https://github.com/pbraiders/stdlib",
+  "readme": "README.md",
+  "time": "2020-04-25",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Olivier Jullien",
+      "homepage": "https://github.com/ojullien",
+      "email": "contact@pbraiders.fr"
     }
+  ],
+  "support": {
+    "email": "contact@pbraiders.fr",
+    "docs": "https://github.com/pbraiders/stdlib/docs",
+    "issues": "https://github.com/pbraiders/stdlib/issues",
+    "source": "https://github.com/pbraiders/stdlib"
+  },
+  "require": {
+    "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pbraiders\\Stdlib\\": "src/"
+    },
+    "files": [
+      "src/Stdlib.php"
+    ]
+  },
+  "require-dev": {
+    "php-coveralls/php-coveralls": "^2.2",
+    "phpunit/phpunit": "^9.1"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PbraidersTest\\Stdlib\\": "tests/"
+    },
+    "files": [
+      "src/Stdlib.php"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "vendor-dir": "vendor"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml"
+  }
 }
