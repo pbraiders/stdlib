@@ -69,4 +69,4 @@ Be sure to include a title and clear description,as much relevant information as
 
 ## License
 
-**PBRaiders\Stdlib** is open-source and is licensed under the [GNU General Public License v3.0 License](https://github.com/pbraiders/stdlib/blob/master/LICENSE).
+**PBRaiders\Stdlib** is open-source and is licensed under the [MIT License](https://github.com/pbraiders/stdlib/blob/master/LICENSE).
