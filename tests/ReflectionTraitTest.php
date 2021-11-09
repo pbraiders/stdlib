@@ -18,7 +18,7 @@ class ReflectionTraitTest extends \PHPUnit\Framework\TestCase
     {
         $pMock = $this->getMockForTrait(ReflectionTrait::class);
         $pActual = $pMock->getMethod(\PbraidersTest\Stdlib\StdClass::class, 'theMethod');
-        $this->assertTrue($pActual instanceof ReflectionMethod);
+        self::assertTrue($pActual instanceof ReflectionMethod);
     }
 
     /**
@@ -29,6 +29,6 @@ class ReflectionTraitTest extends \PHPUnit\Framework\TestCase
     {
         $pMock = $this->getMockForTrait(ReflectionTrait::class);
         $pActual = $pMock->getProperty(StdClass::class, 'theProperty');
-        $this->assertTrue($pActual instanceof ReflectionProperty);
+        self::assertTrue($pActual instanceof ReflectionProperty);
     }
 }

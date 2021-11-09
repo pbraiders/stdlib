@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.1/phpunit.xsd"
-    executionOrder="depends,defects"
-    colors="false"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    backupGlobals="false"
-    backupStaticAttributes="false"
-    cacheResult="false"
-    cacheTokens="true"
-    forceCoversAnnotation="true"
-    beStrictAboutCoversAnnotation="true"
-    beStrictAboutOutputDuringTests="true"
-    beStrictAboutTodoAnnotatedTests="true"
-    processIsolation="false"
-    stopOnError="false"
-    stopOnFailure="true"
-    stopOnIncomplete="false"
-    stopOnSkipped="false"
-    stopOnRisky="false"
-    testSuiteLoaderClass="PHPUnit\Runner\StandardTestSuiteLoader"
-    timeoutForSmallTests="1"
-    timeoutForMediumTests="10"
-    timeoutForLargeTests="60"
-    verbose="true"
-    bootstrap="vendor/autoload.php">
+
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        beStrictAboutChangesToGlobalState="true"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutResourceUsageDuringSmallTests="true"
+        beStrictAboutTestsThatDoNotTestAnything="true"
+        beStrictAboutTodoAnnotatedTests="false"
+        beStrictAboutCoversAnnotation="true"
+        cacheResult="false"
+        colors="true"
+        columns="max"
+        convertDeprecationsToExceptions="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        enforceTimeLimit="false"
+        defaultTimeLimit="0"
+        failOnIncomplete="false"
+        failOnRisky="false"
+        failOnSkipped="false"
+        failOnWarning="false"
+        forceCoversAnnotation="true"
+        noInteraction="false"
+        processIsolation="false"
+        registerMockObjectsFromTestArgumentsRecursively="false"
+        resolveDependencies="true"
+        reverseDefectList="false"
+        stderr="false"
+        stopOnError="false"
+        stopOnFailure="true"
+        stopOnIncomplete="false"
+        stopOnRisky="false"
+        stopOnSkipped="false"
+        stopOnWarning="false"
+        stopOnDefect="false"
+        testdox="false"
+        timeoutForSmallTests="1"
+        timeoutForMediumTests="10"
+        timeoutForLargeTests="60"
+        verbose="false"
+        bootstrap="vendor/autoload.php">
     <php>
+        <ini name="display_errors" value="1" />
+        <ini name="error_reporting" value="-1" />
     </php>
+
     <testsuites>
         <testsuite name="Pbraiders Stdlib Test Suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
-    <logging>
-        <log type="coverage-clover" target="build/tests/clover.xml"/>
-    </logging>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+
+    <coverage processUncoveredFiles="true">
+        <include>
             <directory suffix=".php">src</directory>
-            <exclude>
-                <directory>tests</directory>
-                <directory>vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+        <exclude>
+            <directory>tests</directory>
+            <directory>vendor</directory>
+        </exclude>
+    </coverage>
+
 </phpunit>

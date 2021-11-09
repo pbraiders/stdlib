@@ -4,7 +4,7 @@ namespace PbraidersTest\Stdlib;
 
 use function Pbraiders\Stdlib\array_key_search;
 
-class array_key_search_Test extends \PHPUnit\Framework\TestCase
+class ArrayKeySearchTest extends \PHPUnit\Framework\TestCase
 {
   /**
    * Undocumented function
@@ -22,9 +22,9 @@ class array_key_search_Test extends \PHPUnit\Framework\TestCase
    * @dataProvider provideSucessData
    * @group specification
    */
-    public function test_array_key_search_Success(array $input, $expected)
+    public function testArrayKeySearchSuccess(array $input, $expected)
     {
         $return = array_key_search($input['array1'], $input['array2']);
-        $this->assertSame($expected, $return);
+        self::assertSame($expected, $return);
     }
 }

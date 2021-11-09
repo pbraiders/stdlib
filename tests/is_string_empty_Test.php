@@ -4,7 +4,7 @@ namespace PbraidersTest\Stdlib;
 
 use function Pbraiders\Stdlib\is_string_empty;
 
-class is_string_empty_Test extends \PHPUnit\Framework\TestCase
+class IsStringEmptyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Undocumented function
@@ -22,9 +22,9 @@ class is_string_empty_Test extends \PHPUnit\Framework\TestCase
      * @dataProvider provideSucessData
      * @group specification
      */
-    public function test_is_string_empty_Success(string $input, bool $expected)
+    public function testIsStringEmptySuccess(string $input, bool $expected)
     {
         $bActual = is_string_empty($input);
-        $this->assertSame($expected, $bActual);
+        self::assertSame($expected, $bActual);
     }
 }
