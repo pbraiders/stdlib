@@ -25,13 +25,13 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-cache
 
       - name: Lint Code Base
-        uses: github/super-linter/slim@v4.7.3
+        uses: github/super-linter/slim@v4
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_PHP_PHPCS: true
           VALIDATE_PHP_PHPSTAN: true
-          VALIDATE_PHP_PSALM: true
+          VALIDATE_PHP_PSALM: false
           LINTER_RULES_PATH: .github/linters
           FILTER_REGEX_EXCLUDE: '(composer.lock)'
