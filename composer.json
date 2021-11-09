@@ -1,52 +1,65 @@
 {
-  "name": "pbraiders/stdlib",
-  "description": "Pbraiders stdlib component",
-  "homepage": "https://github.com/pbraiders/stdlib",
-  "readme": "README.md",
-  "time": "2020-04-25",
-  "license": "GPL-3.0-or-later",
-  "authors": [
-    {
-      "name": "Olivier Jullien",
-      "homepage": "https://github.com/ojullien",
-      "email": "contact@pbraiders.fr"
+    "name": "pbraiders/stdlib",
+    "description": "Pbraiders stdlib component",
+    "homepage": "https://github.com/pbraiders/stdlib",
+    "readme": "README.md",
+    "time": "2021-11-01",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Olivier Jullien",
+            "homepage": "https://github.com/ojullien",
+            "email": "contact@pbraiders.fr"
+        }
+    ],
+    "support": {
+        "email": "contact@pbraiders.fr",
+        "docs": "https://github.com/pbraiders/stdlib/docs",
+        "issues": "https://github.com/pbraiders/stdlib/issues",
+        "source": "https://github.com/pbraiders/stdlib"
+    },
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pbraiders\\Stdlib\\": "src/"
+        },
+        "files": [
+            "src/Stdlib.php"
+        ]
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.2",
+        "phpstan/phpstan": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "phpunit/phpunit": "^9",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "squizlabs/php_codesniffer": "^3.6",
+        "vimeo/psalm": "^4.12"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PbraidersTest\\Stdlib\\": "tests/"
+        },
+        "files": [
+            "src/Stdlib.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "check-cs": "vendor/bin/phpcs --standard=.github/linters/phpcs.xml --report=checkstyle",
+        "fix-cs": [
+            "@squizlabs"
+        ],
+        "psalm": "vendor/bin/psalm --config=.github/linters/psalm.xml --threads=4 --show-info=true",
+        "squizlabs": "vendor/bin/phpcbf --standard=.github/linters/phpcs.xml --no-cache",
+        "stan": "vendor/bin/phpstan analyse -c .github/linters/phpstan.neon --no-progress --xdebug",
+        "test": "vendor/bin/phpunit --configuration phpunit.xml"
     }
-  ],
-  "support": {
-    "email": "contact@pbraiders.fr",
-    "docs": "https://github.com/pbraiders/stdlib/docs",
-    "issues": "https://github.com/pbraiders/stdlib/issues",
-    "source": "https://github.com/pbraiders/stdlib"
-  },
-  "require": {
-    "php": "^7.2"
-  },
-  "autoload": {
-    "psr-4": {
-      "Pbraiders\\Stdlib\\": "src/"
-    },
-    "files": [
-      "src/Stdlib.php"
-    ]
-  },
-  "require-dev": {
-    "php-coveralls/php-coveralls": "^2.2",
-    "phpunit/phpunit": "^9.1"
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "PbraidersTest\\Stdlib\\": "tests/"
-    },
-    "files": [
-      "src/Stdlib.php"
-    ]
-  },
-  "config": {
-    "sort-packages": true,
-    "optimize-autoloader": true,
-    "vendor-dir": "vendor"
-  },
-  "scripts": {
-    "test": "vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover build/tests/clover.xml"
-  }
 }

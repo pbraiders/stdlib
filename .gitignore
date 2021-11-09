@@ -1,9 +1,3 @@
-.vscode/
+/.vscode/
+/var/
 /vendor/
-/build/
-*.cache
-*-cache
-*.log
-local.*
-desktop.ini
-composer.phar

@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
-
 namespace PbraidersTest\Stdlib;
 
 class StdClass
 {
     /**
-     * @var string.
+     * Undocumented variable
+     *
+     * @var boolean
      */
-    protected $theProperty = false;
+    protected bool $theProperty = true;
 
     /**
      * Undocumented function
      *
      * @return boolean
      */
-    protected function theMethod()
+    protected function theMethod(): bool
     {
         return true;
     }

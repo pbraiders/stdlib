@@ -4,7 +4,7 @@ namespace PbraidersTest\Stdlib;
 
 use function Pbraiders\Stdlib\ksort_recursive;
 
-class ksort_recursive_Test extends \PHPUnit\Framework\TestCase
+class KsortRecursiveTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Undocumented function
@@ -22,10 +22,10 @@ class ksort_recursive_Test extends \PHPUnit\Framework\TestCase
      * @dataProvider provideSucessData
      * @group specification
      */
-    public function test_ksort_recursive_Success(array $input, array $expected)
+    public function testKsortRecursiveSuccess(array $input, array $expected)
     {
         $bActual = ksort_recursive($input);
-        $this->assertTrue($bActual);
-        $this->assertSame($expected, $input);
+        self::assertTrue($bActual);
+        self::assertSame($expected, $input);
     }
 }

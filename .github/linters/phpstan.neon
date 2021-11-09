@@ -1,0 +1,16 @@
+includes:
+    - ../../vendor/phpstan/phpstan-strict-rules/rules.neon
+    - ../../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ../../vendor/phpstan/phpstan-phpunit/rules.neon
+
+parameters:
+    tmpDir: ../../var/cache/phpstan
+    level: 0
+    paths:
+        - ../../src
+    excludePaths:
+        - ../../.github
+        - ../../docs
+        - ../../tests
+        - ../../var
+        - ../../vendor

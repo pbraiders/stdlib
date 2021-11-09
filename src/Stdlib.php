@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @package Pbraiders\Stdlib
  * @link    https://github.com/pbraiders/stdlib for the canonical source repository
  * @license https://github.com/pbraiders/stdlib/blob/master/LICENSE GNU General Public License v3.0 License.
  */
 
-namespace Pbraiders\Stdlib;
+declare(strict_types=1);
 
-use RuntimeException;
+namespace Pbraiders\Stdlib;
 
 /**
  * Sets the values of PHP configuration options.
@@ -25,7 +23,7 @@ use RuntimeException;
 function ini_set_all(array $options): bool
 {
     return \array_walk($options, function ($newvalue, $option): void {
-        @\ini_set((string) $option, (string) $newvalue);
+        @\ini_set($option, $newvalue);
     });
 }
 
@@ -131,14 +129,14 @@ function array_key_search(array $array1, array $array2)
         $value = &$pArray2[$key];
 
         // Case: the key is missing in $array1. Stop.
-        if (! array_key_exists($key, $pArray1)) {
+        if (!array_key_exists($key, $pArray1)) {
             $return = null;
             break;
         }
 
         // Case: the key exists in $array1.
         // if $array2[$key] is not an array, that means we want to return $array1[$key]
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             $return = $pArray1[$key];
             break;
         }
@@ -146,7 +144,7 @@ function array_key_search(array $array1, array $array2)
         // Case: the key exists in $array1.
         // Case: $array2[$key] is an array. That means we looking for the deeper key.
         // If $array1[$key] is not an array. Stop.
-        if (! is_array($pArray1[$key])) {
+        if (!is_array($pArray1[$key])) {
             $return = null;
             break;
         }

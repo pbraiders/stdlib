@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @package Pbraiders\Stdlib
  * @link    https://github.com/pbraiders/stdlib for the canonical source repository
  * @license https://github.com/pbraiders/stdlib/blob/master/LICENSE GNU General Public License v3.0 License.
  */
+
+declare(strict_types=1);
 
 namespace Pbraiders\Stdlib;
 
@@ -21,7 +21,7 @@ trait ReflectionTrait
 {
 
     /**
-     * get private and protected method.
+     * returns an accessible private or protected method.
      *
      * @param string $className
      * @param string $methodName
@@ -36,7 +36,7 @@ trait ReflectionTrait
     }
 
     /**
-     * get private and protected property.
+     * returns an accessible private and protected property.
      *
      * @param string $className
      * @param string $propertyName
