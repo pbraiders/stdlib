@@ -8,9 +8,9 @@ parameters:
     level: 0
     paths:
         - ../../src
-        - ../../tests
     excludePaths:
         - ../../.github
         - ../../docs
+        - ../../tests
         - ../../var
         - ../../vendor
