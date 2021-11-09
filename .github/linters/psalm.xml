@@ -31,7 +31,6 @@
     runTaintAnalysis="true"
     throwExceptionOnError="false"
     hideExternalErrors="false"
-    cacheDirectory="../../var/cache/psalm"
     allowFileIncludes="true">
     <projectFiles>
         <directory name="../../src"/>

@@ -30,6 +30,7 @@
         ]
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.2",
         "phpstan/phpstan": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",

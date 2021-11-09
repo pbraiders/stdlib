@@ -11,5 +11,5 @@ return (new PhpCsFixer\Config())
     ->setRules([
         'concat_space' => ['spacing' => 'one'],
     ])
-    ->setCacheFile('var/cache/.php-cs-fixer.cache')
+    ->setCacheFile('../../var/cache/.php-cs-fixer.cache')
     ->setFinder($finder);
