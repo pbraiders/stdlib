@@ -22,7 +22,6 @@ theme:
 
 # Customization
 docs_dir: docs
-site_dir: build/docs/html
 
 # Extensions
 markdown_extensions:
