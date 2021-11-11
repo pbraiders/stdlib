@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Pbraiders\Stdlib;
 
+use Closure;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -48,5 +49,19 @@ trait ReflectionTrait
         $pProperty = $pReflector->getProperty($propertyName);
         $pProperty->setAccessible(true);
         return $pProperty;
+    }
+
+    /**
+     * returns a closure for a private or protected method.
+     *
+     * @param object $object
+     * @param string $methodName
+     * @return \Closure
+     */
+    public function getClosure(object $object, string $methodName): Closure
+    {
+        $pReflector = new ReflectionClass($object);
+        $pMethod = $pReflector->getMethod($methodName);
+        return $pMethod->getClosure($object);
     }
 }

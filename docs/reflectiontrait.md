@@ -8,13 +8,15 @@ ReflectionTrait is an utility trait for reflection. We use it to easily add refl
 
 <?php
 
+namespace Pbraiders;
+
 use Pbraiders\Stdlib\ReflectionTrait;
 
 class HelloWorld {
 
-    protected $name = 'Mike';
+    protected string $name = 'Mike';
 
-    protected function sayHelloTo($name) {
+    protected function sayHelloTo( string $name): string {
         return 'Hello ' . $name;
     }
 
@@ -27,7 +29,7 @@ class HelloWorldTest extends \PHPUnit\Framework\TestCase
     public function test_protected_property()
     {
         $class = new HelloWorld();
-        $property = $this->getProperty('\Pbraiders\MyClass', 'name');
+        $property = $this->getProperty('\Pbraiders\HelloWorld', 'name');
         $actual = $property->getValue($class);
         $this->assertSame('Mike', $actual);
     }
@@ -35,8 +37,16 @@ class HelloWorldTest extends \PHPUnit\Framework\TestCase
     public function test_protected_method()
     {
         $class = new HelloWorld();
-        $method = $this->getMethod('\Pbraiders\MyClass', 'sayHelloTo');
+        $method = $this->getMethod('\Pbraiders\HelloWorld', 'sayHelloTo');
         $actual = $method->invokeArgs($class,['you']);
+        $this->assertSame('Hello you', $actual);
+    }
+
+    public function test_protected_method_with_closure()
+    {
+        $class = new HelloWorld();
+        $method = $this->getClosure($class, 'sayHelloTo');
+        $actual = $class('you');
         $this->assertSame('Hello you', $actual);
     }
 }

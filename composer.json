@@ -57,7 +57,7 @@
         "fix-cs": [
             "@squizlabs"
         ],
-        "psalm": "vendor/bin/psalm --config=.github/linters/psalm.xml --threads=4 --show-info=true",
+        "psalm": "vendor/bin/psalm --config=.github/linters/psalm.xml --threads=4 --show-info=true --long-progress --stats",
         "squizlabs": "vendor/bin/phpcbf --standard=.github/linters/phpcs.xml --no-cache",
         "stan": "vendor/bin/phpstan analyse -c .github/linters/phpstan.neon --no-progress --xdebug",
         "test": "vendor/bin/phpunit --configuration phpunit.xml"
