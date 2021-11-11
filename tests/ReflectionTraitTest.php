@@ -2,6 +2,7 @@
 
 namespace PbraidersTest\Stdlib;
 
+use Closure;
 use Pbraiders\Stdlib\ReflectionTrait;
 use PbraidersTest\Stdlib\StdClass;
 use ReflectionMethod;
@@ -16,9 +17,13 @@ class ReflectionTraitTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetMethod()
     {
+        /** @var ReflectionTrait */
         $pMock = $this->getMockForTrait(ReflectionTrait::class);
-        $pActual = $pMock->getMethod(\PbraidersTest\Stdlib\StdClass::class, 'theMethod');
-        self::assertTrue($pActual instanceof ReflectionMethod);
+        $pReflectionMethod = $pMock->getMethod(\PbraidersTest\Stdlib\StdClass::class, 'theMethod');
+        self::assertTrue($pReflectionMethod instanceof ReflectionMethod);
+
+        $pObject = new StdClass();
+        self::assertTrue($pReflectionMethod->invoke($pObject));
     }
 
     /**
@@ -27,8 +32,29 @@ class ReflectionTraitTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetProperty()
     {
+        /** @var ReflectionTrait */
         $pMock = $this->getMockForTrait(ReflectionTrait::class);
-        $pActual = $pMock->getProperty(StdClass::class, 'theProperty');
-        self::assertTrue($pActual instanceof ReflectionProperty);
+        $pReflectionProperty = $pMock->getProperty(StdClass::class, 'theProperty');
+        self::assertTrue($pReflectionProperty instanceof ReflectionProperty);
+
+        $pObject = new StdClass();
+        self::assertTrue($pReflectionProperty->getValue($pObject));
+        $pReflectionProperty->setValue($pObject, \false);
+        self::assertFalse($pReflectionProperty->getValue($pObject));
+    }
+
+    /**
+     * @covers \Pbraiders\Stdlib\ReflectionTrait
+     * @group specification
+     */
+    public function testGetClosure()
+    {
+        /** @var ReflectionTrait */
+        $pMock = $this->getMockForTrait(ReflectionTrait::class);
+
+        $pObject = new StdClass();
+        $pClosure = $pMock->getClosure($pObject, 'theMethod');
+        self::assertTrue($pClosure instanceof Closure);
+        self::assertTrue($pClosure());
     }
 }

@@ -2,8 +2,8 @@
 <psalm
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config ../../vendor/vimeo/psalm/config.xsd"
-    errorLevel="1"
+    xsi:noNamespaceSchemaLocation="https://getpsalm.org/schema/config"
+    errorLevel="2"
     resolveFromConfigFile="true"
     useDocblockTypes="true"
     useDocblockPropertyTypes="false"
@@ -35,7 +35,9 @@
     <projectFiles>
         <directory name="../../src"/>
         <ignoreFiles>
+            <directory name="../../docs"/>
             <directory name="../../tests"/>
+            <directory name="../../var"/>
             <directory name="../../vendor"/>
         </ignoreFiles>
     </projectFiles>

@@ -60,7 +60,9 @@
             <directory suffix=".php">src</directory>
         </include>
         <exclude>
+            <directory>docs</directory>
             <directory>tests</directory>
+            <directory>var</directory>
             <directory>vendor</directory>
         </exclude>
     </coverage>
